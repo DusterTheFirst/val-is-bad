@@ -1,3 +1,10 @@
-import React from 'react'
+import Head from 'next/head'
 
-export default () => (<div>This is a base component.</div>)
+export default () =>
+  <div>
+    <Head>
+      <title>This is a title</title>
+      <meta name="viewport" content="initial-scale=1.0, width=device-width" />
+    </Head>
+    <p>Hello world!</p>
+  </div>
