@@ -1,0 +1,20 @@
+{
+  "compilerOptions": {
+    "moduleResolution":"node",
+    "module": "commonjs",
+    "target": "es2017",
+    "outDir": "build",
+    "experimentalDecorators": true,
+    "sourceMap": true,
+    "emitDecoratorMetadata": true,
+    "strictNullChecks": true,
+    "allowJs": true
+  },
+  "formatCodeOptions": {
+    "identSize": 2,
+    "tabSize": 2
+  },
+  "exclude": [
+    "node_modules"
+  ]
+}

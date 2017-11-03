@@ -1,0 +1,53 @@
+{
+  "name": "nextjs-server-ts",
+  "version": "1.0.0",
+  "description": "next.js custom typescript server starter kit.",
+  "main": "build/server",
+  "author": "Maksim Sinik <maksim@sinik.it>",
+  "license": "MIT",
+  "scripts": {
+    "start": "cross-env NODE_ENV=production node build/server",
+    "clean-build": "rimraf ./build && mkdir build",
+    "prebuild": "npm run clean-build",
+    "build": "npm-run-all --parallel build:client build:server",
+    "prebuild:dev": "npm run clean-build",
+    "build:client": "tsc -p ./src/client/tsconfig.json",
+    "build:client:dev": "tsc --watch -p ./src/client/tsconfig.json",
+    "build:server": "tsc -p ./src/server/tsconfig.json",
+    "localtunnel": "lt --port 3000",
+    "share": "npm-run-all --parallel dev localtunnel",
+    "lint": "npm-run-all --parallel lint:client lint:server",
+    "lint:client": "tslint -c tslint.json -t stylish --type-check -p ./src/client/tsconfig.json",
+    "lint:server": "tslint -c tslint.json -t stylish --type-check -p ./src/server/tsconfig.json",
+    "dev": "cross-env NODE_ENV=development npm-run-all --parallel build:client:dev nodemon",
+    "nodemon": "nodemon -e ts -w \"./src/server\" -x \"npm run debug\"",
+    "debug": "npm run build:server && node --inspect build/server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@gitlab.com:nucleode/wake.git"
+  },
+  "devDependencies": {
+    "@types/node": "^8.0.47",
+    "cross-env": "~5.1.1",
+    "dotenv": "~4.0.0",
+    "localtunnel": "^1.8.3",
+    "nodemon": "^1.12.1",
+    "npm-run-all": "^4.1.1",
+    "nsp": "^2.8.1",
+    "rimraf": "^2.6.2",
+    "tslint": "^5.8.0",
+    "typescript": "^2.6.1"
+  },
+  "bugs": {
+    "url": "https://gitlab.com/nucleode/wake/issues"
+  },
+  "homepage": "https://gitlab.com/nucleode/wake",
+  "dependencies": {
+    "express": "^4.16.2",
+    "fastify": "^0.32.0",
+    "next": "^4.1.4",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "module": "es2015",
+    "jsx": "react-native",
+    "outDir": "../../build/client",
+    "rootDir": ".",
+    "allowJs": false
+  },
+  "include": [
+    "**/*.ts",
+    "**/*.tsx"
+  ]
+}
