@@ -2,7 +2,7 @@ import * as next from 'next'
 import * as fastify from 'fastify'
 import { join } from 'path'
 
-import routes from './api/index'
+import index from './api/index'
 
 const port = parseInt(process.env.PORT as string) || 3000
 const dev = process.env.NODE_ENV !== 'production'
@@ -13,7 +13,7 @@ app.prepare()
   .then(() => {
     const server = fastify()
 
-    server.use('/api', routes)
+    server.get('/api', index)
 
     server.get('/*', (req, res: any) => {
       handle(req.req, res.res)

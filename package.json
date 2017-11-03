@@ -44,7 +44,6 @@
   },
   "homepage": "https://gitlab.com/nucleode/wake",
   "dependencies": {
-    "express": "^4.16.2",
     "fastify": "^0.32.0",
     "next": "^4.1.4",
     "react": "^16.0.0",
