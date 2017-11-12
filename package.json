@@ -10,6 +10,8 @@
     "clean-build": "rimraf ./build && mkdir build",
     "prebuild": "npm run clean-build",
     "build": "npm-run-all --parallel build:client build:server",
+    "postbuild": "npm run build:next",
+    "build:next": "next build ./build/client",
     "prebuild:dev": "npm run clean-build",
     "build:client": "tsc -p ./src/client/tsconfig.json",
     "build:client:dev": "tsc --watch -p ./src/client/tsconfig.json",
