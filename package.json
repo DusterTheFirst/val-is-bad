@@ -25,28 +25,28 @@
   },
   "repository": {
     "type": "git",
-    "url": "git@gitlab.com:nucleode/wake.git"
+    "url": "https://github.com/fox1t/nextjs-server-ts"
   },
   "devDependencies": {
-    "@types/node": "^8.0.47",
+    "@types/node": "^8.0.51",
     "cross-env": "~5.1.1",
     "dotenv": "~4.0.0",
     "localtunnel": "^1.8.3",
     "nodemon": "^1.12.1",
-    "npm-run-all": "^4.1.1",
-    "nsp": "^2.8.1",
+    "npm-run-all": "^4.1.2",
+    "nsp": "^3.1.0",
     "rimraf": "^2.6.2",
     "tslint": "^5.8.0",
     "typescript": "^2.6.1"
   },
   "bugs": {
-    "url": "https://gitlab.com/nucleode/wake/issues"
+    "url": "https://github.com/fox1t/nextjs-server-ts/issues"
   },
-  "homepage": "https://gitlab.com/nucleode/wake",
+  "homepage": "https://github.com/fox1t/nextjs-server-ts",
   "dependencies": {
-    "fastify": "^0.32.0",
+    "fastify": "^0.33.0",
     "next": "^4.1.4",
-    "react": "^16.0.0",
-    "react-dom": "^16.0.0"
+    "react": "^16.1.0",
+    "react-dom": "^16.1.0"
   }
 }
