@@ -1,5 +1,5 @@
-import * as next from 'next'
-import * as fastify from 'fastify'
+import next from 'next'
+import fastify from 'fastify'
 import { join } from 'path'
 
 import index from './api/index'

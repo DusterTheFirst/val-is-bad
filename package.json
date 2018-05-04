@@ -21,34 +21,35 @@
     "lint": "npm-run-all --parallel lint:client lint:server",
     "lint:client": "tslint -c tslint.json -t stylish --type-check -p ./src/client/tsconfig.json",
     "lint:server": "tslint -c tslint.json -t stylish --type-check -p ./src/server/tsconfig.json",
+    "update": "npx npm-check -u",
     "dev": "cross-env NODE_ENV=development npm-run-all --parallel build:client:dev nodemon",
     "nodemon": "nodemon -e ts -w \"./src/server\" -x \"npm run debug\"",
-    "debug": "npm run build:server && node --inspect build/server"
+    "debug": "npm run build:server && node -r dotenv/config --inspect build/server"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/fox1t/nextjs-server-ts"
   },
   "devDependencies": {
-    "@types/node": "^8.0.51",
-    "cross-env": "~5.1.1",
-    "dotenv": "~4.0.0",
-    "localtunnel": "^1.8.3",
-    "nodemon": "^1.12.1",
+    "@types/node": "^10.0.3",
+    "cross-env": "^5.1.4",
+    "dotenv": "^5.0.1",
+    "localtunnel": "^1.9.0",
+    "nodemon": "^1.17.3",
     "npm-run-all": "^4.1.2",
-    "nsp": "^3.1.0",
+    "nsp": "^3.2.1",
     "rimraf": "^2.6.2",
-    "tslint": "^5.8.0",
-    "typescript": "^2.6.1"
+    "tslint": "^5.10.0",
+    "typescript": "^2.8.3"
   },
   "bugs": {
     "url": "https://github.com/fox1t/nextjs-server-ts/issues"
   },
   "homepage": "https://github.com/fox1t/nextjs-server-ts",
   "dependencies": {
-    "fastify": "^0.33.0",
-    "next": "^4.1.4",
-    "react": "^16.1.0",
-    "react-dom": "^16.1.0"
+    "fastify": "^1.4.0",
+    "next": "^6.0.0",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2"
   }
 }
