@@ -3,55 +3,76 @@
  */
 
 import express from "express";
-import { readFileSync } from "fs";
 import helmet from "helmet";
 import http from "http";
-import https from "https";
-import next from "next";
-import { join, resolve } from "path";
+import nextjs from "next";
+import { join } from "path";
+import "reflect-metadata";
+import { createConnection } from "typeorm";
 import { parse } from "url";
+import { User } from "./accounts";
 import api from "./api";
-import { pagesErrorHandler } from "./errorHandler";
+import { pagesErrorHandler } from "./error";
 
+const port = process.env.PORT || 5982;
 const dev = process.env.NODE_ENV !== "production";
-const app = next({ dev, dir: join(__dirname, "../client") });
+const app = nextjs({
+    conf: {
+        poweredByHeader: false
+    },
+    dev,
+    dir: join(__dirname, "../client"),
+    quiet: true
+});
 const handle = app.getRequestHandler();
 
-app.prepare().then(() => {
+app.prepare().then(async () => {
+    let db = await createConnection({
+        database: "db/users.sqlite",
+        entities: [
+            User
+        ],
+        logger: "debug",
+        logging: true,
+        synchronize: true,
+        type: "sqlite"
+    });
+
     const server = express();
 
     // Protection
     server.use(helmet());
 
-    server.get("/", (req, res) => {
-        res.contentType("html");
-        res.setHeader("Cache-Control", "max-age=600");
+    // server.get("/", (req, res) => {
+    //     res.contentType("html");
 
-        console.log(req.headers);
+    //     app.render(req, res, "/index");
+    // });
+    // server.get("/u/:user", async (req, res) => {
+    //     let users = db.getRepository(User);
 
-        app.render(req, res, "/index");
-    });
-    server.get("/u/:user", (req, res) => {
-        res.send(`So nice of you to stop by and check out ${req.params.user}`);
-    });
+    //     let user = await users.findOne(req.params.user);
+
+    //     if (user === undefined) {
+    //         app.render(req, res, "/user404", { user: req.params.user });
+    //     } else {
+    //         app.render(req, res, "/user", { user: user.username });
+    //     }
+    // });
 
     // API
-    server.use("/api", api);
+    server.use("/api", api(db));
+    // Static Files
+    server.use("/static", express.static("static"));
+
+    // NextJS Files
+    server.use("/_next/*", (req, res) => handle(req, res, parse(req.originalUrl)));
 
     // Error Handlers
-    // server.use("*", (req, res) => app.render(req, res, "/404"));
-    server.use("*", (req, res) => handle(req, res, parse(req.originalUrl)));
+    // @ts-ignore
+    server.use("*", (req, res) => app.render(req, res, "/404", { path: parse(req.originalUrl).pathname, e: console.log(parse(req.originalUrl)) }));
     server.use(pagesErrorHandler);
 
-    // Spin up servers
-    // Actual webserver
-    https.createServer({
-        cert: readFileSync(resolve("cert/cert.crt")),
-        key: readFileSync(resolve("cert/key.crt"))
-    }, server).listen(443);
-    // Redirect from 80 to 443
-    http.createServer((_req, res) => {
-        res.writeHead(302, { Location: "https://dusterthefirst.ddns.net" });
-        res.end();
-    }).listen(80);
-}).catch(console.error);
+    // Spin up server
+    http.createServer(server).listen(port);
+}).catch((e) => console.log("ERROR: ", e));

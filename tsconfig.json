@@ -2,7 +2,7 @@
     "compilerOptions": {
         "moduleResolution": "node",
         "module": "commonjs",
-        "target": "es2017",
+        "target": "es6",
         "outDir": "build",
         "pretty": true,
         "noEmitOnError": true,
@@ -15,10 +15,6 @@
         "allowJs": false,
         "noUnusedLocals": true,
         "rootDir": "src"
-    },
-    "formatCodeOptions": {
-        "identSize": 2,
-        "tabSize": 2
     },
     "exclude": [
         "node_modules",

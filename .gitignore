@@ -1,4 +1,5 @@
-*.crt
+# Database files
+*.sqlite
 
 # Logs
 logs

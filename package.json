@@ -30,21 +30,26 @@
         "@types/helmet": "0.0.42",
         "@types/next": "^7.0.5",
         "@types/node": "~10.12.10",
+        "@types/styled-jsx": "^2.2.7",
         "cross-env": "~5.2.0",
         "dotenv": "~6.1.0",
         "nodemon": "~1.18.7",
         "npm-run-all": "~4.1.5",
         "rimraf": "^2.6.2",
         "tslint": "~5.11.0",
-        "typescript": "~3.1.6"
+        "typescript": "^3.2.2"
     },
     "dependencies": {
         "body-parser": "^1.18.3",
         "express": "^4.16.4",
         "helmet": "^3.15.0",
-        "next": "~7.0.2",
+        "isomorphic-unfetch": "^3.0.0",
+        "next": "^7.0.2",
         "react": "~16.6.3",
         "react-dom": "~16.6.3",
-        "tslint-react": "^3.6.0"
+        "reflect-metadata": "^0.1.12",
+        "sqlite3": "^4.0.4",
+        "tslint-react": "^3.6.0",
+        "typeorm": "^0.2.9"
     }
 }

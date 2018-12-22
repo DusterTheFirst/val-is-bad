@@ -2,9 +2,7 @@
  * Copyright (C) 2018  Zachary Kohnen (DusterTheFirst)
  */
 
-import Head from "next/head";
-
-interface IProps {
+export interface IOpenGraph {
     /** The title of the page */
     title: string;
     /** The description of the page */
@@ -20,18 +18,42 @@ interface IProps {
     type?: string;
     /** The locale for the site */
     locale?: string;
-    /** THe overlying site name */
+    /** The overlying site name */
     site_name?: string;
+    /** The color theme of the site */
+    theme?: string;
+    /** Keywords for search engines */
+    keywords?: string[];
 }
 
-export default ({title, type, image, url, description, locale, site_name}: IProps) => (
-    <Head>
+export default ({
+    title,
+    url,
+    description,
+    theme = "#435eb7",
+    type = "website",
+    image = "https://forum.dusterthefirst.com/static/exorsize.png",
+    locale = "en_US",
+    site_name = "DusterTheFirst Forum",
+    keywords = ["forum", "dusterthefirst"]
+}: IOpenGraph) => (
+    <>
+        {/* OpenGraph META */}
         <meta property="og:title" content={title}/>
-        <meta property="og:type" content={type === undefined ? "website" : type}/>
-        {/* <meta property="og:image" content={image}/> */}
         <meta property="og:url" content={url}/>
         <meta property="og:description" content={description}/>
-        <meta property="og:locale" content={locale === undefined ? "en_US" : locale}/>
-        <meta property="og:site_name" content={site_name === undefined ? "DusterTheFirst's Website that is better than vals" : site_name}/>
-    </Head>
+        <meta property="og:type" content={type}/>
+        <meta property="og:image" content={image}/>
+        <meta property="og:locale" content={locale}/>
+        <meta property="og:site_name" content={site_name}/>
+
+        {/* Unknown */}
+        <meta name="theme-color" content={theme}/>
+
+        {/* General META */}
+        <meta name="description" content={description}/>
+        <meta name="keywords" content={keywords.join(",")}/>
+        <link rel="author" href="DusterTheFirst" />
+        <link rel="canonical" href={url} />
+    </>
 );

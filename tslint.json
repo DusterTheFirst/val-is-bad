@@ -170,7 +170,7 @@
         "no-floating-promises": true,
         "no-for-in-array": false,
         "no-implicit-dependencies": true,
-        "no-import-side-effect": true,
+        "no-import-side-effect": false,
         "no-inferred-empty-object-type": true,
         "no-invalid-template-strings": true,
         "no-magic-numbers": false,
